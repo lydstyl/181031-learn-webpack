@@ -2,9 +2,9 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // process.env.NODE_ENV = 'production';
-//const devMode = process.env.NODE_ENV !== 'production'
-let devMode = process.env.NODE_ENV !== 'production';
-devMode = true;
+const devMode = process.env.NODE_ENV !== 'production'
+// let devMode = process.env.NODE_ENV !== 'production';
+// devMode = true;
 
 module.exports = {
   entry: './src/index.js',
@@ -34,5 +34,9 @@ module.exports = {
       }
     ]
   },
-  watch: true
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/
+  },
+  mode: 'development'
 };
