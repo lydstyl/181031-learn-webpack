@@ -1,4 +1,6 @@
 .hello {
+  width: 50%;
+  margin: auto;
   background: lightgray;
   font-size: 40px; }
 
