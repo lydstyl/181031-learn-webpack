@@ -2,7 +2,9 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // process.env.NODE_ENV = 'production';
-const devMode = process.env.NODE_ENV !== 'production'
+//const devMode = process.env.NODE_ENV !== 'production'
+let devMode = process.env.NODE_ENV !== 'production';
+devMode = true;
 
 module.exports = {
   entry: './src/index.js',
@@ -25,7 +27,7 @@ module.exports = {
       {
         test: /\.sass$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           "css-loader", // translates CSS into CommonJS
           "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
