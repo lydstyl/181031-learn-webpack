@@ -1,5 +1,6 @@
 import _ from 'lodash';
 // import './style.css';
+import test from './test';
 import './style.sass';
 
 function component() {
@@ -13,3 +14,5 @@ function component() {
   }
   
   document.body.appendChild(component());
+
+  test();

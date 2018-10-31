@@ -1,4 +1,8 @@
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+// process.env.NODE_ENV = 'production';
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: './src/index.js',
@@ -6,19 +10,22 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: devMode ? '[name].css' : '[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    })
+  ],
+
   module: {
     rules: [
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader'
-      //   ]
-      // },
       {
         test: /\.sass$/,
         use: [
-          "style-loader", // creates style nodes from JS strings
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           "css-loader", // translates CSS into CommonJS
           "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
